@@ -14,9 +14,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         TextView console = (TextView) findViewById(R.id.textView);
         myDB = new DatabaseHelper(this);
-        console.append("\n\nTABLE NAMES v2\n");
-//        for(String l: myDB.getTables()) {
-//            console.append(l + "\n");
-//        }
+        console.append("\n\nLoading...");
+
+        console.append("\n\n1. TABLE NAMES ARE\n\n");
+        for(String l : myDB.getTables()){
+            console.append(l+"\n");
+        }
+        SQLiteDatabase db = myDB.getWritableDatabase();
+        db.execSQL("CREATE TABLE User_Info2 (USERID INTEGER PRIMARY KEY, USERNAME TEXT, PASSWORD TEXT,NAME TEXT, PHONENO TEXT)");
+        db.execSQL("CREATE TABLE User_Info3 (USERID INTEGER PRIMARY KEY, USERNAME TEXT, PASSWORD TEXT,NAME TEXT, PHONENO TEXT)");
+        console.append("\n\n2. TABLE NAMES ARE\n\n");
+        for(String l : myDB.getTables()){
+            console.append(l+"\n");
+        }
     }
 }
